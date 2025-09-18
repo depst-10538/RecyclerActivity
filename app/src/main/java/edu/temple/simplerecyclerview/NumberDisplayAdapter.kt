@@ -1,14 +1,36 @@
 package edu.temple.simplerecyclerview
 
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 // Step 3: Complete adapter implementation
 
-class NumberDisplayAdapter /* TODO Step 3a: Provide Adapter Parent */ {
+class NumberDisplayAdapter(private val items: Array<Int>) :
+    RecyclerView.Adapter<NumberDisplayAdapter.NumberViewHolder>() {
 
-    class NumberViewHolder (val textView: TextView) : RecyclerView.ViewHolder (textView) {}
+    class NumberViewHolder (val view: TextView) : RecyclerView.ViewHolder (view) {
 
-    // TODO Step 3b: Complete function definitions for adapter
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): NumberViewHolder {
+        return NumberViewHolder(
+            TextView(parent.context)
+        )
+    }
+
+    override fun onBindViewHolder(
+        holder: NumberViewHolder,
+        position: Int
+    ) {
+        holder.view.text = items[position].toString()
+        holder.view.textSize = items[position].toFloat()
+    }
+
+    override fun getItemCount() = items.size
+
 
 }
